@@ -1,7 +1,23 @@
+@import "tailwindcss";
+
 :root {
+  /* accent colors */
+  --accent-text: #a729f5;
+  --accent-background: #fff;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
+    --accent-text: #fff;
+    --accent-background: #1d1d1d;
   }
+}
+
+@theme {
+  --color-purple: var(--accent-purple);
+}
+
+body {
+  color: var(--accent-text);
+  background-color: var(--accent-background);
 }
