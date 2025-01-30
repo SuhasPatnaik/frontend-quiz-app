@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
   exclude: scrollbar, rootcolor;
 }
 
@@ -26,6 +25,23 @@
   --color-dark-navy: #313e51;
 }
 
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Rubik-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Rubik";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Rubik-Italic-VariablesFont_wght.ttf") format("truetype");
+}
+
 body {
   background: var(--background);
+  font-family: Rubik, sans-serif;
 }
