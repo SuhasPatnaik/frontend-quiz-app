@@ -1,23 +1,31 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+  exclude: scrollbar, rootcolor;
+}
 
 :root {
-  /* accent colors */
-  --accent-text: #a729f5;
-  --accent-background: #fff;
+  --background: var(--color-white);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --accent-text: #fff;
-    --accent-background: #1d1d1d;
+    --background: var(--color-navy);
   }
 }
 
 @theme {
-  --color-purple: var(--accent-purple);
+  --color-purple: #a729f5;
+  --color-white: #ffffff;
+  --color-green: #26d782;
+  --color-light-bluish: #abc1e1;
+  --color-red: #ee5454;
+  --color-light-grey: #f4f6fa;
+  --color-navy: #3b4d66;
+  --color-grey-navy: #626c7f;
+  --color-dark-navy: #313e51;
 }
 
 body {
-  color: var(--accent-text);
-  background-color: var(--accent-background);
+  background: var(--background);
 }
