@@ -1,5 +1,5 @@
-import LightSunIcon from "../assets/icon-sun-light.svg";
-import LightMoonIcon from "../assets/icon-moon-light.svg";
+import LightSunIcon from "/images/icon-sun-light.svg";
+import LightMoonIcon from "/images/icon-moon-light.svg";
 
 export default function ToggleMode() {
   return (
