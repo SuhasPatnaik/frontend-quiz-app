@@ -1,6 +1,8 @@
 import quizData from "../data/data.json";
 import OptionCard from "./OptionCard";
 
+const colors = ["#FFF1E9", "#E0FDEF", "#EBF0FF", "#F6E7FF"];
+
 export default function StartMenu() {
   return (
     <>
@@ -9,6 +11,7 @@ export default function StartMenu() {
           key={index}
           optionLabel={subject.icon}
           optionName={subject.title}
+          optionBg={colors[index]}
         />
       ))}
     </>
