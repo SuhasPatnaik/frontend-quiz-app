@@ -1,4 +1,14 @@
-export default function OptionCard({ optionLabel, optionName, optionBg }) {
+interface OptionCardProps {
+  optionLabel: string;
+  optionName: string;
+  optionBg?: string;
+}
+
+export default function OptionCard({
+  optionLabel,
+  optionName,
+  optionBg,
+}: OptionCardProps) {
   return (
     <div className="flex gap-4 items-center bg-navy h-18 rounded-[0.75rem] px-3">
       <div
