@@ -1,3 +1,6 @@
+import { Link } from "react-router";
+import OptionPair from "./OptionPair";
+
 interface OptionCardProps {
   optionLabel: string;
   optionName: string;
@@ -10,14 +13,15 @@ export default function OptionCard({
   optionBg,
 }: OptionCardProps) {
   return (
-    <div className="flex gap-4 items-center bg-navy h-18 rounded-[0.75rem] px-3">
-      <div
-        className="h-fit p-2 rounded-md"
-        style={{ backgroundColor: optionBg || "bg-gray-300" }}
-      >
-        <img src={optionLabel} alt="Subject icon" className="h-8" />
-      </div>
-      <div className="font-medium text-[1.125rem]">{optionName}</div>
-    </div>
+    <Link
+      className="flex gap-4 items-center bg-navy h-18 rounded-[0.75rem] px-3"
+      to={`/subject/${optionName}`}
+    >
+      <OptionPair
+        optionLabel={optionLabel}
+        optionName={optionName}
+        optionBg={optionBg}
+      />
+    </Link>
   );
 }
