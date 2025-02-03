@@ -7,7 +7,7 @@ interface OptionCardProps {
   optionBg?: string;
 }
 
-export default function OptionCard({
+export default function SubjectOptionCard({
   optionLabel,
   optionName,
   optionBg,

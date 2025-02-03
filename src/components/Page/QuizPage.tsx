@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { useState } from "react";
 
 import quizData from "../../data/data.json";
-import OptionCard from "../Feature/OptionCard";
+import AnswerOptionCard from "../Feature/AnswerOptionCard";
 
 export default function QuizPage() {
   const { subjectName } = useParams();
@@ -13,8 +13,6 @@ export default function QuizPage() {
 
   const quiz = quizIndex !== -1 ? quizData.quizzes[quizIndex] : null;
 
-  console.log(quiz);
-
   const [currentQuestionIndex, setCurrentQuestionindex] = useState(0);
 
   return (
@@ -22,24 +20,28 @@ export default function QuizPage() {
       <h2 className="italic text-light-bluish text-[0.875rem]">
         Question {currentQuestionIndex + 1} of 10
       </h2>
-      <QuestionAnswer currentQuestion={quiz?.questions[currentQuestionIndex]} />
+      <QuestionAnswer
+        currentQuestion={quiz?.questions[currentQuestionIndex].question}
+        correctAnswer={quiz?.questions[currentQuestionIndex].answer}
+      />
     </div>
   );
 }
 
 const multipleChoice = ["A", "B", "C", "D"];
 
-function QuestionAnswer({ currentQuestion }) {
+function QuestionAnswer({ currentQuestion, correctAnswer }) {
   console.log(currentQuestion);
   return (
     <>
-      <p>{currentQuestion.question}</p>
+      <p>{currentQuestion}</p>
       {/* <ProgressSlider /> */}
       {currentQuestion.options.map((option, index) => (
-        <OptionCard
+        <AnswerOptionCard
           key={index}
           optionLabel={multipleChoice[index]}
           optionName={option}
+          correctAnswer={correctAnswer}
         />
       ))}
     </>
