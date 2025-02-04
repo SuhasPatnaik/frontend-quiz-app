@@ -1,4 +1,9 @@
-export default function OptionPair({ optionLabel, optionName, optionBg }) {
+export default function OptionPair({
+  optionLabel,
+  optionName,
+  optionBg,
+  isOptionActive,
+}) {
   return (
     <>
       <div
