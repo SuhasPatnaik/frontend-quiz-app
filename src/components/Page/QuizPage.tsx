@@ -32,9 +32,20 @@ function QuestionAnswer({ currentQuestion }) {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(
     null
   );
+  const [answerType, setAnswerType] = useState(-1);
 
   const handleOptionClick = (index: number) => {
     setSelectedOptionIndex(index);
+    setAnswerType(-1);
+  };
+
+  const handleAnswerSubmission = () => {
+    if (selectedOptionIndex === null) return;
+    setAnswerType(
+      currentQuestion.options[selectedOptionIndex] === currentQuestion.answer
+        ? 1
+        : 0
+    );
   };
 
   return (
@@ -49,11 +60,12 @@ function QuestionAnswer({ currentQuestion }) {
             optionName={option}
             correctAnswer={currentQuestion.answer}
             isOptionActive={selectedOptionIndex === index}
+            answerType={selectedOptionIndex === index ? answerType : -1}
             onOptionClick={() => handleOptionClick(index)}
           />
         ))}
       </div>
-      <Button>Submit Answer</Button>
+      <Button onAnswerSubmission={handleAnswerSubmission}>Submit Answer</Button>
     </>
   );
 }

@@ -1,9 +1,16 @@
+interface OptionPairProps {
+  optionLabel: string;
+  optionName: string;
+  optionBg?: string;
+  isOptionActive?: boolean;
+}
+
 export default function OptionPair({
   optionLabel,
   optionName,
   optionBg,
   isOptionActive,
-}) {
+}: OptionPairProps) {
   return (
     <>
       <div
@@ -13,8 +20,16 @@ export default function OptionPair({
         {optionBg ? (
           <img src={optionLabel} alt="Subject icon" className="h-8" />
         ) : (
-          <div className="bg-light-grey py-2 px-4 rounded-md">
-            <p className="text-dark-navy font-medium text-[1.125rem]">
+          <div
+            className={`bg-light-grey py-2 px-4 rounded-md ${
+              isOptionActive ? "bg-purple" : ""
+            }`}
+          >
+            <p
+              className={`text-dark-navy font-medium text-[1.125rem] ${
+                isOptionActive ? "text-white" : ""
+              }`}
+            >
               {optionLabel}
             </p>
           </div>
