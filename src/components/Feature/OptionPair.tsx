@@ -5,6 +5,7 @@ interface OptionPairProps {
   isOptionActive?: boolean;
   answerType?: number;
   correctAnswer?: string;
+  displayCorrectAnswer?: boolean;
 }
 
 export default function OptionPair({
@@ -14,6 +15,7 @@ export default function OptionPair({
   isOptionActive,
   answerType,
   correctAnswer,
+  displayCorrectAnswer,
 }: OptionPairProps) {
   const isCorrectOption = optionName === correctAnswer;
 
@@ -48,12 +50,7 @@ export default function OptionPair({
         )}
       </div>
       <div className="font-medium text-[1.125rem]">{optionName}</div>
-      {answerType === 1 && isCorrectOption && (
-        <div className="ml-auto mr-4">
-          <img src="/images/icon-correct.svg" alt="Correct" />
-        </div>
-      )}
-      {answerType === 0 && isCorrectOption && (
+      {displayCorrectAnswer && isCorrectOption && (
         <div className="ml-auto mr-4">
           <img src="/images/icon-correct.svg" alt="Correct" />
         </div>

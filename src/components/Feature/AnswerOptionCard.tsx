@@ -8,6 +8,7 @@ interface AnswerOptionCardProps {
   isOptionActive: boolean;
   answerType: number;
   onOptionClick: () => void;
+  displayCorrectAnswer: boolean;
 }
 
 export default function AnswerOptionCard({
@@ -17,6 +18,7 @@ export default function AnswerOptionCard({
   isOptionActive,
   answerType,
   onOptionClick,
+  displayCorrectAnswer,
 }: AnswerOptionCardProps) {
   const getBorderStyle = () => {
     if (answerType === -1)
@@ -37,6 +39,7 @@ export default function AnswerOptionCard({
         isOptionActive={isOptionActive}
         answerType={answerType}
         correctAnswer={correctAnswer}
+        displayCorrectAnswer={displayCorrectAnswer}
       />
     </button>
   );

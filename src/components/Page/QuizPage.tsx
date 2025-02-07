@@ -33,10 +33,12 @@ function QuestionAnswer({ currentQuestion }) {
     null
   );
   const [answerType, setAnswerType] = useState(-1);
+  const [displayCorrectAnswer, setDisplayCorrectAnswer] = useState(false);
 
   const handleOptionClick = (index: number) => {
     setSelectedOptionIndex(index);
     setAnswerType(-1);
+    setDisplayCorrectAnswer(false);
   };
 
   const handleAnswerSubmission = () => {
@@ -46,6 +48,7 @@ function QuestionAnswer({ currentQuestion }) {
         ? 1
         : 0
     );
+    setDisplayCorrectAnswer(true);
   };
 
   return (
@@ -62,6 +65,7 @@ function QuestionAnswer({ currentQuestion }) {
             isOptionActive={selectedOptionIndex === index}
             answerType={selectedOptionIndex === index ? answerType : -1}
             onOptionClick={() => handleOptionClick(index)}
+            displayCorrectAnswer={displayCorrectAnswer}
           />
         ))}
       </div>
