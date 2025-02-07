@@ -3,6 +3,8 @@ interface OptionPairProps {
   optionName: string;
   optionBg?: string;
   isOptionActive?: boolean;
+  answerType?: number;
+  correctAnswer?: string;
 }
 
 export default function OptionPair({
@@ -10,7 +12,11 @@ export default function OptionPair({
   optionName,
   optionBg,
   isOptionActive,
+  answerType,
+  correctAnswer,
 }: OptionPairProps) {
+  const isCorrectOption = optionName === correctAnswer;
+
   return (
     <>
       <div
@@ -21,8 +27,14 @@ export default function OptionPair({
           <img src={optionLabel} alt="Subject icon" className="h-8" />
         ) : (
           <div
-            className={`bg-light-grey py-2 px-4 rounded-md ${
-              isOptionActive ? "bg-purple" : ""
+            className={`py-2 px-4 rounded-md ${
+              answerType === 1
+                ? "bg-green"
+                : answerType === 0
+                ? "bg-red"
+                : isOptionActive
+                ? "bg-purple"
+                : "bg-light-grey"
             }`}
           >
             <p
@@ -36,6 +48,21 @@ export default function OptionPair({
         )}
       </div>
       <div className="font-medium text-[1.125rem]">{optionName}</div>
+      {answerType === 1 && isCorrectOption && (
+        <div className="ml-auto mr-4">
+          <img src="/images/icon-correct.svg" alt="Correct" />
+        </div>
+      )}
+      {answerType === 0 && isCorrectOption && (
+        <div className="ml-auto mr-4">
+          <img src="/images/icon-correct.svg" alt="Correct" />
+        </div>
+      )}
+      {answerType === 0 && (
+        <div className="ml-auto mr-4">
+          <img src="/images/icon-incorrect.svg" alt="Incorrect" />
+        </div>
+      )}
     </>
   );
 }

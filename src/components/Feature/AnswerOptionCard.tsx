@@ -35,6 +35,8 @@ export default function AnswerOptionCard({
         optionLabel={optionLabel}
         optionName={optionName}
         isOptionActive={isOptionActive}
+        answerType={answerType}
+        correctAnswer={correctAnswer}
       />
     </button>
   );
