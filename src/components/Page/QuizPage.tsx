@@ -15,20 +15,7 @@ export default function QuizPage() {
   const quiz = quizIndex !== -1 ? quizData.quizzes[quizIndex] : null;
 
   const [currentQuestionIndex, setCurrentQuestionindex] = useState(0);
-
-  return (
-    <div className="py-8">
-      <h2 className="italic text-light-bluish text-[0.875rem]">
-        Question {currentQuestionIndex + 1} of 10
-      </h2>
-      <QuestionAnswer currentQuestion={quiz?.questions[currentQuestionIndex]} />
-    </div>
-  );
-}
-
-const multipleChoice = ["A", "B", "C", "D"];
-
-function QuestionAnswer({ currentQuestion }) {
+  const [nextQuestion, setNextQuestion] = useState(false);
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(
     null
   );
@@ -41,6 +28,8 @@ function QuestionAnswer({ currentQuestion }) {
     setDisplayCorrectAnswer(false);
   };
 
+  const currentQuestion = quiz?.questions[currentQuestionIndex];
+
   const handleAnswerSubmission = () => {
     if (selectedOptionIndex === null) return;
     setAnswerType(
@@ -51,6 +40,44 @@ function QuestionAnswer({ currentQuestion }) {
     setDisplayCorrectAnswer(true);
   };
 
+  const handleNextQuestion = () => {
+    setSelectedOptionIndex(null);
+    setAnswerType(-1);
+    setDisplayCorrectAnswer(false);
+    setCurrentQuestionindex(currentQuestionIndex + 1);
+  };
+
+  console.log("currentQuestionIndex " + currentQuestionIndex);
+
+  return (
+    <div className="py-8">
+      <h2 className="italic text-light-bluish text-[0.875rem]">
+        Question {currentQuestionIndex + 1} of 10
+      </h2>
+      <QuestionAnswer
+        currentQuestion={currentQuestion}
+        selectedOptionIndex={selectedOptionIndex}
+        answerType={answerType}
+        handleOptionClick={handleOptionClick}
+        displayCorrectAnswer={displayCorrectAnswer}
+        handleAnswerSubmission={handleAnswerSubmission}
+        handleNextQuestion={handleNextQuestion}
+      />
+    </div>
+  );
+}
+
+const multipleChoice = ["A", "B", "C", "D"];
+
+function QuestionAnswer({
+  currentQuestion,
+  selectedOptionIndex,
+  answerType,
+  handleOptionClick,
+  displayCorrectAnswer,
+  handleAnswerSubmission,
+  handleNextQuestion,
+}) {
   return (
     <>
       <p>{currentQuestion.question}</p>
@@ -69,7 +96,13 @@ function QuestionAnswer({ currentQuestion }) {
           />
         ))}
       </div>
-      <Button onAnswerSubmission={handleAnswerSubmission}>Submit Answer</Button>
+      {!displayCorrectAnswer ? (
+        <Button onAnswerSubmission={handleAnswerSubmission}>
+          Submit Answer
+        </Button>
+      ) : (
+        <Button onNextQuestion={handleNextQuestion}>Next Question</Button>
+      )}
     </>
   );
 }
