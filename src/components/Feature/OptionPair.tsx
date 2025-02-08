@@ -1,6 +1,6 @@
 interface OptionPairProps {
   optionLabel: string;
-  optionName: string;
+  optionName?: string;
   optionBg?: string;
   isOptionActive?: boolean;
   answerType?: number;
@@ -22,14 +22,14 @@ export default function OptionPair({
   return (
     <>
       <div
-        className="h-fit p-2 rounded-md"
+        className="h-fit p-2 rounded-lg"
         style={{ backgroundColor: optionBg || "bg-gray-300" }}
       >
         {optionBg ? (
           <img src={optionLabel} alt="Subject icon" className="h-8" />
         ) : (
           <div
-            className={`py-2 px-4 rounded-md ${
+            className={`py-2 px-4 rounded-lg ${
               answerType === 1
                 ? "bg-green"
                 : answerType === 0
