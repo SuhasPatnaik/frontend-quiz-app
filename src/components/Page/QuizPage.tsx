@@ -1,9 +1,10 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 
 import quizData from "../../data/data.json";
 import AnswerOptionCard from "../Feature/AnswerOptionCard";
 import Button from "../UI/Button";
+import ProgressSlider from "../UI/ProgressSlider";
 
 export default function QuizPage() {
   const { subjectName } = useParams();
@@ -15,7 +16,6 @@ export default function QuizPage() {
   const quiz = quizIndex !== -1 ? quizData.quizzes[quizIndex] : null;
 
   const [currentQuestionIndex, setCurrentQuestionindex] = useState(0);
-  const [nextQuestion, setNextQuestion] = useState(false);
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(
     null
   );
@@ -30,24 +30,35 @@ export default function QuizPage() {
 
   const currentQuestion = quiz?.questions[currentQuestionIndex];
 
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+
   const handleAnswerSubmission = () => {
     if (selectedOptionIndex === null) return;
-    setAnswerType(
-      currentQuestion.options[selectedOptionIndex] === currentQuestion.answer
-        ? 1
-        : 0
-    );
+
+    const isCorrect =
+      currentQuestion.options[selectedOptionIndex] === currentQuestion.answer;
+
+    setAnswerType(isCorrect ? 1 : 0);
+
+    if (isCorrect) {
+      setCorrectAnswersCount((prev) => prev + 1);
+    }
+
     setDisplayCorrectAnswer(true);
   };
 
-  const handleNextQuestion = () => {
-    setSelectedOptionIndex(null);
-    setAnswerType(-1);
-    setDisplayCorrectAnswer(false);
-    setCurrentQuestionindex(currentQuestionIndex + 1);
-  };
+  const navigate = useNavigate();
 
-  console.log("currentQuestionIndex " + currentQuestionIndex);
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < quiz?.questions.length - 1) {
+      setSelectedOptionIndex(null);
+      setAnswerType(-1);
+      setDisplayCorrectAnswer(false);
+      setCurrentQuestionindex(currentQuestionIndex + 1);
+    } else {
+      navigate(`/subject/${subjectName}/score`, { state: correctAnswersCount });
+    }
+  };
 
   return (
     <div className="py-8">
@@ -56,6 +67,7 @@ export default function QuizPage() {
       </h2>
       <QuestionAnswer
         currentQuestion={currentQuestion}
+        currentQuestionIndex={currentQuestionIndex}
         selectedOptionIndex={selectedOptionIndex}
         answerType={answerType}
         handleOptionClick={handleOptionClick}
@@ -71,6 +83,7 @@ const multipleChoice = ["A", "B", "C", "D"];
 
 function QuestionAnswer({
   currentQuestion,
+  currentQuestionIndex,
   selectedOptionIndex,
   answerType,
   handleOptionClick,
@@ -81,7 +94,7 @@ function QuestionAnswer({
   return (
     <>
       <p>{currentQuestion.question}</p>
-      {/* <ProgressSlider /> */}
+      <ProgressSlider currentQuestionIndex={currentQuestionIndex} />
       <div className="flex flex-col gap-4">
         {currentQuestion.options.map((option, index) => (
           <AnswerOptionCard
