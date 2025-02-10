@@ -4,7 +4,7 @@ import OptionPair from "../Feature/OptionPair";
 import quizData from "../../data/data.json";
 import Button from "../UI/Button";
 
-const optionsBgColor = ["#FFF1E9", "#E0FDEF", "#EBF0FF", "#F6E7FF"];
+import { SUBJECT_BG_COLORS } from "../../lib/constants";
 
 export default function ScorePage() {
   const location = useLocation();
@@ -35,11 +35,11 @@ export default function ScorePage() {
           <OptionPair
             optionLabel={quiz.icon}
             optionName={subjectName}
-            optionBg={optionsBgColor[quizIndex]}
+            optionBg={SUBJECT_BG_COLORS[quizIndex]}
           />
         </div>
         <p className="font-medium text-[5.5rem]">
-          {localStorage.getItem("finalScore")}
+          {Number(localStorage.getItem("finalScore")) || 0}
         </p>
         <p className="text-light-bluish">out of 10</p>
       </div>
