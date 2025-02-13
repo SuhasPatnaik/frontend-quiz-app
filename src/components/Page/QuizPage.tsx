@@ -1,19 +1,15 @@
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 
-import quizData from "../../data/data.json";
-import AnswerOptionCard from "../Feature/AnswerOptionCard";
-import Button from "../UI/Button";
-import ProgressSlider from "../UI/ProgressSlider";
+import { getQuizByIndex, getQuizIndex } from "../../utils/quizUtils";
+import QuestionAnswer from "../Feature/QuestionAnswer";
 
 export default function QuizPage() {
   const { subjectName } = useParams();
 
-  const quizIndex = quizData.quizzes.findIndex(
-    (quiz) => quiz.title.toLowerCase() === subjectName?.toLowerCase()
-  );
+  const quizIndex = getQuizIndex(subjectName);
 
-  const quiz = quizIndex !== -1 ? quizData.quizzes[quizIndex] : null;
+  const quiz = getQuizByIndex(quizIndex);
 
   const [currentQuestionIndex, setCurrentQuestionindex] = useState(0);
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(
@@ -76,46 +72,5 @@ export default function QuizPage() {
         handleNextQuestion={handleNextQuestion}
       />
     </div>
-  );
-}
-
-const multipleChoice = ["A", "B", "C", "D"];
-
-function QuestionAnswer({
-  currentQuestion,
-  currentQuestionIndex,
-  selectedOptionIndex,
-  answerType,
-  handleOptionClick,
-  displayCorrectAnswer,
-  handleAnswerSubmission,
-  handleNextQuestion,
-}) {
-  return (
-    <>
-      <p>{currentQuestion.question}</p>
-      <ProgressSlider currentQuestionIndex={currentQuestionIndex} />
-      <div className="flex flex-col gap-4">
-        {currentQuestion.options.map((option, index) => (
-          <AnswerOptionCard
-            key={index}
-            optionLabel={multipleChoice[index]}
-            optionName={option}
-            correctAnswer={currentQuestion.answer}
-            isOptionActive={selectedOptionIndex === index}
-            answerType={selectedOptionIndex === index ? answerType : -1}
-            onOptionClick={() => handleOptionClick(index)}
-            displayCorrectAnswer={displayCorrectAnswer}
-          />
-        ))}
-      </div>
-      {!displayCorrectAnswer ? (
-        <Button onAnswerSubmission={handleAnswerSubmission}>
-          Submit Answer
-        </Button>
-      ) : (
-        <Button onNextQuestion={handleNextQuestion}>Next Question</Button>
-      )}
-    </>
   );
 }

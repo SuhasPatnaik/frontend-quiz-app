@@ -1,10 +1,10 @@
 import { useLocation, useNavigate, useParams } from "react-router";
 import OptionPair from "../Feature/OptionPair";
 
-import quizData from "../../data/data.json";
 import Button from "../UI/Button";
 
 import { SUBJECT_BG_COLORS } from "../../lib/constants";
+import { getQuizByIndex, getQuizIndex } from "../../utils/quizUtils";
 
 export default function ScorePage() {
   const location = useLocation();
@@ -15,11 +15,9 @@ export default function ScorePage() {
 
   const { subjectName } = useParams();
 
-  const quizIndex = quizData.quizzes.findIndex(
-    (quiz) => quiz.title.toLowerCase() === subjectName?.toLowerCase()
-  );
+  const quizIndex = getQuizIndex(subjectName);
 
-  const quiz = quizIndex !== -1 ? quizData.quizzes[quizIndex] : null;
+  const quiz = getQuizByIndex(quizIndex);
 
   const handlePlayAgain = () => {
     navigate("/");
