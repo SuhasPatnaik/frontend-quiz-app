@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router";
 
-export default function Error404({ children }) {
+interface Error404Props {
+  children: React.ReactNode;
+}
+
+export default function Error404({ children }: Error404Props) {
   const navigate = useNavigate();
 
   return (
