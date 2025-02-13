@@ -3,9 +3,11 @@ import { useState } from "react";
 
 import { getQuizByIndex, getQuizIndex } from "../../utils/quizUtils";
 import QuestionAnswer from "../Feature/QuestionAnswer";
+import QuizNotFound from "../NotFound/QuizNotFound";
 
 export default function QuizPage() {
   const { subjectName } = useParams();
+  const navigate = useNavigate();
 
   const quizIndex = getQuizIndex(subjectName);
 
@@ -17,6 +19,11 @@ export default function QuizPage() {
   );
   const [answerType, setAnswerType] = useState(-1);
   const [displayCorrectAnswer, setDisplayCorrectAnswer] = useState(false);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+
+  if (!quiz) {
+    return <QuizNotFound />;
+  }
 
   const handleOptionClick = (index: number) => {
     setSelectedOptionIndex(index);
@@ -26,9 +33,9 @@ export default function QuizPage() {
 
   const currentQuestion = quiz?.questions[currentQuestionIndex];
 
-  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
-
   const handleAnswerSubmission = () => {
+    if (!currentQuestion || selectedOptionIndex === null) return;
+
     if (selectedOptionIndex === null) return;
 
     const isCorrect =
@@ -43,9 +50,9 @@ export default function QuizPage() {
     setDisplayCorrectAnswer(true);
   };
 
-  const navigate = useNavigate();
-
   const handleNextQuestion = () => {
+    if (!quiz || !currentQuestion) return;
+
     if (currentQuestionIndex < quiz?.questions.length - 1) {
       setSelectedOptionIndex(null);
       setAnswerType(-1);
@@ -61,16 +68,20 @@ export default function QuizPage() {
       <h2 className="italic text-light-bluish text-[0.875rem]">
         Question {currentQuestionIndex + 1} of 10
       </h2>
-      <QuestionAnswer
-        currentQuestion={currentQuestion}
-        currentQuestionIndex={currentQuestionIndex}
-        selectedOptionIndex={selectedOptionIndex}
-        answerType={answerType}
-        handleOptionClick={handleOptionClick}
-        displayCorrectAnswer={displayCorrectAnswer}
-        handleAnswerSubmission={handleAnswerSubmission}
-        handleNextQuestion={handleNextQuestion}
-      />
+      {!currentQuestion ? (
+        <p className="text-red-500">No question found for this quiz.</p>
+      ) : (
+        <QuestionAnswer
+          currentQuestion={currentQuestion}
+          currentQuestionIndex={currentQuestionIndex}
+          selectedOptionIndex={selectedOptionIndex}
+          answerType={answerType}
+          handleOptionClick={handleOptionClick}
+          displayCorrectAnswer={displayCorrectAnswer}
+          handleAnswerSubmission={handleAnswerSubmission}
+          handleNextQuestion={handleNextQuestion}
+        />
+      )}
     </div>
   );
 }

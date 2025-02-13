@@ -1,5 +1,5 @@
 interface OptionPairProps {
-  optionLabel: string;
+  optionLabel?: string;
   optionName?: string;
   optionBg?: string;
   isOptionActive?: boolean;

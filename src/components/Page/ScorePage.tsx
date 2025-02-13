@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 
 import { SUBJECT_BG_COLORS } from "../../lib/constants";
 import { getQuizByIndex, getQuizIndex } from "../../utils/quizUtils";
+import ScoreNotFound from "../NotFound/ScoreNotFound";
 
 export default function ScorePage() {
   const location = useLocation();
@@ -18,6 +19,10 @@ export default function ScorePage() {
   const quizIndex = getQuizIndex(subjectName);
 
   const quiz = getQuizByIndex(quizIndex);
+
+  if (!quiz) {
+    return <ScoreNotFound />;
+  }
 
   const handlePlayAgain = () => {
     navigate("/");

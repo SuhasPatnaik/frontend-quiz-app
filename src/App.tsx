@@ -4,6 +4,7 @@ import HeaderLayout from "./components/Layout/HeaderLayout";
 import LandingPage from "./components/Page/LandingPage";
 import QuizPage from "./components/Page/QuizPage";
 import ScorePage from "./components/Page/ScorePage";
+import PageNotFound from "./components/NotFound/PageNotFound";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/subject/:subjectName" element={<QuizPage />} />
           <Route path="/subject/:subjectName/score" element={<ScorePage />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
