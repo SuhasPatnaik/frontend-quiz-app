@@ -31,29 +31,33 @@ export default function QuestionAnswer({
 }: QuestionAnswerProps) {
   return (
     <>
-      <p>{currentQuestion.question}</p>
-      <ProgressSlider currentQuestionIndex={currentQuestionIndex} />
-      <div className="flex flex-col gap-4">
-        {currentQuestion.options.map((option, index) => (
-          <AnswerOptionCard
-            key={index}
-            optionLabel={MULTIPLE_CHOICE_OPTIONS[index]}
-            optionName={option}
-            correctAnswer={currentQuestion.answer}
-            isOptionActive={selectedOptionIndex === index}
-            answerType={selectedOptionIndex === index ? answerType : -1}
-            onOptionClick={() => handleOptionClick(index)}
-            displayCorrectAnswer={displayCorrectAnswer}
-          />
-        ))}
+      <div className="lg:col-start-1 lg:row-start-2 lg:flex lg:flex-col lg:gap-56">
+        <p className="lg:text-[2.25rem] ">{currentQuestion.question}</p>
+        <ProgressSlider currentQuestionIndex={currentQuestionIndex} />
       </div>
-      {!displayCorrectAnswer ? (
-        <Button onAnswerSubmission={handleAnswerSubmission}>
-          Submit Answer
-        </Button>
-      ) : (
-        <Button onNextQuestion={handleNextQuestion}>Next Question</Button>
-      )}
+      <div className="col-start-2 row-span-2 flex flex-col gap-8">
+        <div className="flex flex-col gap-4">
+          {currentQuestion.options.map((option, index) => (
+            <AnswerOptionCard
+              key={index}
+              optionLabel={MULTIPLE_CHOICE_OPTIONS[index]}
+              optionName={option}
+              correctAnswer={currentQuestion.answer}
+              isOptionActive={selectedOptionIndex === index}
+              answerType={selectedOptionIndex === index ? answerType : -1}
+              onOptionClick={() => handleOptionClick(index)}
+              displayCorrectAnswer={displayCorrectAnswer}
+            />
+          ))}
+        </div>
+        {!displayCorrectAnswer ? (
+          <Button onAnswerSubmission={handleAnswerSubmission}>
+            Submit Answer
+          </Button>
+        ) : (
+          <Button onNextQuestion={handleNextQuestion}>Next Question</Button>
+        )}
+      </div>
     </>
   );
 }

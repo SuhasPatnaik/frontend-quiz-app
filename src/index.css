@@ -45,3 +45,10 @@ body {
   background: var(--background);
   font-family: Rubik, sans-serif;
 }
+
+input[type="range"]::-webkit-slider-thumb {
+  display: none;
+}
+input[type="range"]::-moz-range-thumb {
+  display: none;
+}

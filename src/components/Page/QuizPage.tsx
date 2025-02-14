@@ -64,8 +64,8 @@ export default function QuizPage() {
   };
 
   return (
-    <div className="py-8">
-      <h2 className="italic text-light-bluish text-[0.875rem]">
+    <div className="lg:grid lg:grid-cols-2 lg:gap-x-32 lg:justify-self-center lg:w-[80vw] lg:pt-16 lg:grid-rows-[auto_1fr]">
+      <h2 className="italic text-light-bluish text-[0.875rem] col-start-1 row-start-1 lg:text-[1.125rem] pb-4">
         Question {currentQuestionIndex + 1} of 10
       </h2>
       {!currentQuestion ? (
