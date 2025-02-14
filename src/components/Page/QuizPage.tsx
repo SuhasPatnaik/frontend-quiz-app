@@ -19,6 +19,7 @@ export default function QuizPage() {
   );
   const [answerType, setAnswerType] = useState(-1);
   const [displayCorrectAnswer, setDisplayCorrectAnswer] = useState(false);
+  const [noOptionSubmitted, setNoOptionSubmitted] = useState(false);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
   if (!quiz) {
@@ -29,14 +30,18 @@ export default function QuizPage() {
     setSelectedOptionIndex(index);
     setAnswerType(-1);
     setDisplayCorrectAnswer(false);
+    setNoOptionSubmitted(false);
   };
 
   const currentQuestion = quiz?.questions[currentQuestionIndex];
 
   const handleAnswerSubmission = () => {
-    if (!currentQuestion || selectedOptionIndex === null) return;
+    if (!currentQuestion) return;
 
-    if (selectedOptionIndex === null) return;
+    if (selectedOptionIndex === null) {
+      setNoOptionSubmitted(true);
+      return;
+    }
 
     const isCorrect =
       currentQuestion.options[selectedOptionIndex] === currentQuestion.answer;
@@ -64,7 +69,7 @@ export default function QuizPage() {
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-2 lg:gap-x-32 lg:justify-self-center lg:w-[80vw] lg:pt-16 lg:grid-rows-[auto_1fr]">
+    <div className="lg:grid lg:grid-cols-2 lg:gap-x-32 lg:justify-self-center lg:w-[80vw] lg:pt-12 lg:grid-rows-[auto_1fr]">
       <h2 className="italic text-light-bluish text-[0.875rem] col-start-1 row-start-1 lg:text-[1.125rem] pb-4">
         Question {currentQuestionIndex + 1} of 10
       </h2>
@@ -81,6 +86,12 @@ export default function QuizPage() {
           handleAnswerSubmission={handleAnswerSubmission}
           handleNextQuestion={handleNextQuestion}
         />
+      )}
+      {noOptionSubmitted && (
+        <div className="flex gap-4 items-center justify-center col-start-2 my-4">
+          <img src="/images/icon-incorrect.svg" alt="Incorrect icon" />
+          <p>Please select an answer</p>
+        </div>
       )}
     </div>
   );

@@ -31,7 +31,7 @@ export default function QuestionAnswer({
 }: QuestionAnswerProps) {
   return (
     <>
-      <div className="lg:col-start-1 lg:row-start-2 lg:flex lg:flex-col lg:gap-56">
+      <div className="lg:col-start-1 lg:row-start-2 lg:flex lg:flex-col lg:h-full justify-between">
         <p className="lg:text-[2.25rem] ">{currentQuestion.question}</p>
         <ProgressSlider currentQuestionIndex={currentQuestionIndex} />
       </div>

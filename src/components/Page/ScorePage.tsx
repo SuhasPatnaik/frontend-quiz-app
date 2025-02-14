@@ -29,7 +29,7 @@ export default function ScorePage() {
   };
 
   return (
-    <div>
+    <div className="lg:grid lg:grid-cols-2 lg:gap-x-32 lg:justify-self-center lg:w-[80vw] lg:pt-12 lg:grid-rows-[auto_1fr]">
       <h1 className="text-[2.5rem] font-light">
         Quiz completed <span className="font-medium">You scored...</span>
       </h1>
@@ -46,7 +46,9 @@ export default function ScorePage() {
         </p>
         <p className="text-light-bluish">out of 10</p>
       </div>
-      <Button onPlayAgain={handlePlayAgain}>Play Again</Button>
+      <div className="col-start-2 mt-6">
+        <Button onPlayAgain={handlePlayAgain}>Play Again</Button>
+      </div>
     </div>
   );
 }
