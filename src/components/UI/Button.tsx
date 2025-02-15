@@ -13,7 +13,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className="btn bg-purple font-medium w-full text-center border-0 shadow-none rounded-lg"
+      className="btn bg-purple font-medium w-full text-center border-0 shadow-none rounded-lg py-8"
       onClick={onAnswerSubmission || onNextQuestion || onPlayAgain}
     >
       {children}

@@ -31,7 +31,8 @@ export default function ScorePage() {
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-x-32 lg:justify-self-center lg:w-[80vw] lg:pt-12 lg:grid-rows-[auto_1fr]">
       <h1 className="text-[2.5rem] font-light">
-        Quiz completed <span className="font-medium">You scored...</span>
+        Quiz completed <br />
+        <span className="font-medium">You scored...</span>
       </h1>
       <div className="flex flex-col bg-navy py-8 items-center rounded-lg">
         <div className="flex gap-4 items-center">

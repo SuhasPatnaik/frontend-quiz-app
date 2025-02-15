@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui" {
   exclude: scrollbar, rootcolor;
+  themes: light --default, dark --prefersdark;
 }
 
 :root {
@@ -49,6 +50,7 @@ body {
 input[type="range"]::-webkit-slider-thumb {
   display: none;
 }
+
 input[type="range"]::-moz-range-thumb {
   display: none;
 }
