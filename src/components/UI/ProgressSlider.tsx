@@ -1,4 +1,10 @@
-export default function ProgressSlider({ currentQuestionIndex }) {
+interface ProgressSliderProps {
+  currentQuestionIndex: number;
+}
+
+export default function ProgressSlider({
+  currentQuestionIndex,
+}: ProgressSliderProps) {
   return (
     <div className="relative w-full h-6 bg-[var(--color-navy)] rounded-xl">
       <div
