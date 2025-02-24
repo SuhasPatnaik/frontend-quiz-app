@@ -8,7 +8,6 @@ A simple and interactive quiz application that allows users to test their knowle
 - Multiple-choice questions with instant feedback
 - Track your score as you progress
 - Responsive design for mobile and desktop
-- Light/Dark mode support
 - 404 error handling for invalid routes
 
 ## Installation
