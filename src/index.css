@@ -5,13 +5,7 @@
 }
 
 :root {
-  --background: var(--color-white);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-dark-navy);
-  }
+  --background: var(--color-dark-navy);
 }
 
 @theme {
