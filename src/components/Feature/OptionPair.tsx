@@ -49,7 +49,7 @@ export default function OptionPair({
           </div>
         )}
       </div>
-      <div className="font-medium text-[1.125rem]">{optionName}</div>
+      <div className="font-medium lg:text-[1.125rem]">{optionName}</div>
       {displayCorrectAnswer && isCorrectOption && (
         <div className="ml-auto mr-4">
           <img src="/images/icon-correct.svg" alt="Correct" />
