@@ -10,25 +10,6 @@ A simple and interactive quiz application that allows users to test their knowle
 - Responsive design for mobile and desktop
 - 404 error handling for invalid routes
 
-## Installation
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/SuhasPatnaik/quiz-app.git
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd quiz-app
-   ```
-3. Install dependencies:
-   ```sh
-   npm install
-   ```
-4. Start the development server:
-   ```sh
-   npm run dev
-   ```
-
 ## Tech Stack
 
 - **Frontend**: React, TypeScript, Tailwind CSS
@@ -38,4 +19,4 @@ A simple and interactive quiz application that allows users to test their knowle
 
 ## Deployment
 
-The app is live at: [Quiz App](https://your-deployment-url.com)
+The app is live at: https://frontend-quiz-fem.netlify.app/
