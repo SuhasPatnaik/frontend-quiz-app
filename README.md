@@ -15,7 +15,7 @@ A simple and interactive quiz application that allows users to test their knowle
 - **Frontend**: React, TypeScript, Tailwind CSS
 - **Routing**: React Router
 - **State Management**: React Hooks
-- **Deployment**: Vercel
+- **Deployment**: Netlify
 
 ## Deployment
 
